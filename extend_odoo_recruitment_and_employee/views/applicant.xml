@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="applicant_customizations" model="ir.ui.view">
+        <field name="name">applicant.customizations</field>
+        <field name="model">hr.applicant</field>
+        <field name="inherit_id" ref="hr_recruitment.hr_applicant_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='create_employee_from_applicant']" position="replace">
+                <button string="Create Employee" name="create_employee_from_applicant" type="object"
+                        groups="extend_odoo_recruitment_and_employee.group_hr_manager"
+                        class="oe_highlight o_create_employee"
+                        attrs="{'invisible': ['|',('emp_id', '!=', False),('active', '=', False)]}"
+                />
+            </xpath>
+
+            <xpath expr="//field[@name='source_id']" position="after">
+                <field name="manager"/>
+            </xpath>
+            <xpath expr="//separator" position="before">
+                <group>
+                    <group string="Emergency Contact">
+                        <field name="em_name" required="1"/>
+                        <field name="em_address" required="1"/>
+                        <field name="em_phone" required="1"/>
+                    </group>
+                    <group string="Education" modifiers="{}">
+                        <field name="institute" required="1"/>
+                        <field name="degree" required="1"/>
+                        <field name="passing_year" required="1"/>
+                    </group>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>

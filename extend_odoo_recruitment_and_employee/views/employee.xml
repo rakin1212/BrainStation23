@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="employee_customizations_new" model="ir.ui.view">
+        <field name="name">employee.customizations</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='personal_information']/group/group[7]" position="after">
+
+                <group string="Emergency Contact">
+                    <field name="em_name"/>
+                    <field name="em_address"/>
+                    <field name="em_phone"/>
+                </group>
+                <group string="Education" modifiers="{}">
+                    <field name="institute"/>
+                    <field name="degree"/>
+                    <field name="passing_year"/>
+                </group>
+            </xpath>
+            <xpath expr="//page[@name='hr_settings']" position="after">
+                <page name="holidays" string="Holidays">
+                    <group>
+                        <group string="Leave" name="leave_group">
+                            <field name="leave_type1" required="1"/>
+                            <field name="leave_type1_days" required="1"/>
+                            <field name="leave_type2" required="1"/>
+                            <field name="leave_type2_days" required="1"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>
